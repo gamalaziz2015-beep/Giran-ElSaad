@@ -123,8 +123,9 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
  .app-shell{display:block;padding-bottom:78px}
  .sidebar{position:fixed;top:auto;bottom:0;left:0;right:0;width:100%;height:auto;min-height:0;padding:7px 6px calc(7px + env(safe-area-inset-bottom));display:block;border-radius:16px 16px 0 0;box-shadow:0 -8px 28px rgba(12,24,44,.16)}
  .brand-block,.profile-block,.side-caption,.sidebar-footer{display:none}
- nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px;overflow:visible}
- nav button{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:6px 1px;border-radius:9px;font-size:9px;white-space:normal;text-align:center;line-height:1.25}
+ nav{display:flex;flex-direction:row;gap:3px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+ nav::-webkit-scrollbar{display:none}
+ nav button{flex:0 0 78px;min-width:78px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 2px;border-radius:9px;font-size:9px;white-space:normal;text-align:center;line-height:1.2}
  .nav-icon{width:25px;height:25px;flex-basis:25px;font-size:17px;border-radius:8px}
  .topbar{height:82px;padding:10px 15px}
  .topbar h2{font-size:17px}
@@ -212,6 +213,10 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
     <button data-tab="expenses"><span class="nav-icon">▤</span><span>المصروفات</span></button>
     <button data-tab="report"><span class="nav-icon">▥</span><span>التقرير الشهري</span></button>
     <button data-tab="statement"><span class="nav-icon">▧</span><span>كشف حساب الوحدة</span></button>
+    <button data-tab="management"><span class="nav-icon">♙</span><span>الهيكل الإداري</span></button>
+    <button data-tab="manager2"><span class="nav-icon">♟</span><span>المدير الثاني</span></button>
+    <button data-tab="deputy"><span class="nav-icon">♙</span><span>نائب المدير</span></button>
+    <button data-tab="treasurer"><span class="nav-icon">ج</span><span>أمين الصندوق</span></button>
   </nav>
   <div class="sidebar-footer"><span class="gold-dot"></span><span>Gamal kotb</span><small>مدير النظام</small></div>
 </aside>
@@ -284,7 +289,7 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
 <h2>تسجيل التحصيل الشهري</h2>
 <label>الشهر</label><select id="month"></select>
 <label>نوع الحساب</label>
-<select id="payType"><option value="unit">وحدة سكنية</option><option value="office">مكتب الدور الأرضي</option></select>
+<select id="payType"><option value="unit">وحدة سكنية</option><option value="office">مكتب الجلوي — الدور الأرضي</option></select>
 <label>رقم الوحدة</label><input id="payUnit" placeholder="مثال: 1001">
 <label>اسم الدافع</label><input id="payName" placeholder="اسم المالك / الساكن">
 <label>المبلغ المدفوع فعلياً</label><input id="payAmount" type="number" min="1">
@@ -355,6 +360,20 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
 </table></div>
 <p class="muted" id="statementNote">اختر وحدة لعرض كشف الحساب.</p>
 </section>
+
+<section class="panel" id="management">
+<h2>الهيكل الإداري للاتحاد</h2>
+<p class="muted">تظهر المناصب الشاغرة لحين صدور قرار التعيين. لا توجد حسابات دخول أو أسماء افتراضية للأشخاص غير المعيّنين.</p>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px">
+ <div class="card"><h3>المدير العام</h3><strong>Gamal kotb</strong><p class="muted">مُعيّن — مدير النظام والصلاحيات الكاملة</p></div>
+ <div class="card"><h3>المدير الثاني</h3><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div>
+ <div class="card"><h3>نائب المدير</h3><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div>
+ <div class="card"><h3>أمين الصندوق</h3><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div>
+</div>
+</section>
+<section class="panel" id="manager2"><h2>المدير الثاني</h2><div class="card"><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div></section>
+<section class="panel" id="deputy"><h2>نائب المدير</h2><div class="card"><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div></section>
+<section class="panel" id="treasurer"><h2>أمين الصندوق</h2><div class="card"><strong>شاغر</strong><p class="muted">بانتظار التعيين</p></div></section>
 </main>
 </div>
 </div>
@@ -372,10 +391,66 @@ if(!Array.isArray(data.payments))data.payments=[];
 if(!Array.isArray(data.expenses))data.expenses=[];
 
 const seed=[
+{number:'101',name:'الحاج فؤاد',floor:'الأول'},
+{number:'102',name:'محمود صالح',floor:'الأول'},
+{number:'103',name:'الحاج صابر',floor:'الأول'},
 {number:'104',name:'Gamal kotb',floor:'الأول'},
-{number:'1001',name:'محمد عبدالستار',floor:'العاشر'}
+{number:'201',name:'إيهاب جمال',floor:'الثاني'},
+{number:'202',name:'أحمد العدل',floor:'الثاني'},
+{number:'203',name:'ربيع أبو هاجر',floor:'الثاني'},
+{number:'204',name:'أسامة شوقي',floor:'الثاني'},
+{number:'301',name:'أحمد أبو عبده',floor:'الثالث'},
+{number:'302',name:'أم محمد',floor:'الثالث'},
+{number:'303',name:'حماده أبو مريم',floor:'الثالث'},
+{number:'304',name:'مجدي',floor:'الثالث'},
+{number:'401',name:'كريم جمال',floor:'الرابع'},
+{number:'402',name:'أم يزيد',floor:'الرابع'},
+{number:'403',name:'محمود عوف',floor:'الرابع'},
+{number:'404',name:'لولا',floor:'الرابع'},
+{number:'501',name:'أم أحمد',floor:'الخامس'},
+{number:'502',name:'منطقة وخالية',floor:'الخامس'},
+{number:'503',name:'أم عبدالرحمن',floor:'الخامس'},
+{number:'504',name:'ياسر الحاوي',floor:'الخامس'},
+{number:'601',name:'محمد عبدالرحمن',floor:'السادس'},
+{number:'602',name:'منطقة وخالية',floor:'السادس'},
+{number:'603',name:'سعيد فاروق',floor:'السادس'},
+{number:'604',name:'مصطفى صاوي',floor:'السادس'},
+{number:'701',name:'حسام محمد',floor:'السابع'},
+{number:'702',name:'أحمد هشام',floor:'السابع'},
+{number:'703',name:'حسن محمد',floor:'السابع'},
+{number:'704',name:'منطقة وخالية',floor:'السابع'},
+{number:'801',name:'جمال محمد',floor:'الثامن'},
+{number:'802',name:'محمد حاموكشا',floor:'الثامن'},
+{number:'803',name:'أم هشام',floor:'الثامن'},
+{number:'804',name:'عمرو أبو زيد',floor:'الثامن'},
+{number:'901',name:'أحمد يحيى',floor:'التاسع'},
+{number:'902',name:'بلال',floor:'التاسع'},
+{number:'903',name:'أبو سليم',floor:'التاسع'},
+{number:'904',name:'أم معتصم',floor:'التاسع'},
+{number:'1001',name:'محمد عبدالستار',floor:'العاشر'},
+{number:'1002',name:'أبو هشام',floor:'العاشر'},
+{number:'1003',name:'أبو عبدالرحمن',floor:'العاشر'},
+{number:'1004',name:'عبدالله التوبي',floor:'العاشر'},
+{number:'1101',name:'أحمد عادل',floor:'الحادي عشر'},
+{number:'1102',name:'محمد جمال',floor:'الحادي عشر'},
+{number:'1103',name:'يوسف السوداني',floor:'الحادي عشر'},
+{number:'1104',name:'ياسر الحاوي',floor:'الحادي عشر'},
+{number:'1201',name:'أبو يحيى',floor:'الثاني عشر'},
+{number:'1202',name:'سيد عبده',floor:'الثاني عشر'},
+{number:'1203',name:'أم شهاب',floor:'الثاني عشر'},
+{number:'1204',name:'أحمد سلطان',floor:'الثاني عشر'}
 ];
-seed.forEach(s=>{if(!data.units.some(u=>u.number===s.number))data.units.push(s)});
+seed.forEach(s=>{
+ const existing=data.units.find(u=>String(u.number)===s.number);
+ if(!existing)data.units.push({...s});
+ else {
+   existing.floor=s.floor;
+   if(['104','802','1001'].includes(s.number))existing.name=s.name;
+ }
+});
+// المكتب حساب مستقل عن الوحدات السكنية
+if(!data.office)data.office={number:'مكتب الجلوي',name:'مكتب الجلوي',floor:'الأرضي'};
+localStorage.setItem(KEY,JSON.stringify(data));
 
 const months=[];
 for(let y=2026,m=12;y<2028&&(y<2027||m<=11);){
@@ -411,7 +486,7 @@ render();
 function showTab(id){
 document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
 document.querySelectorAll('.panel').forEach(s=>s.classList.toggle('active',s.id===id));
-const titles={home:'لوحة الإدارة',units:'الوحدات والسكان',payments:'تسجيل التحصيل',expenses:'المصروفات',report:'التقرير الشهري',statement:'كشف حساب الوحدة'};
+const titles={home:'لوحة الإدارة',units:'الوحدات والسكان',payments:'تسجيل التحصيل',expenses:'المصروفات',report:'التقرير الشهري',statement:'كشف حساب الوحدة',management:'الهيكل الإداري',manager2:'المدير الثاني',deputy:'نائب المدير',treasurer:'أمين الصندوق'};
 document.getElementById('pageTitle').textContent=titles[id]||'جيران السعد';
 window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -466,7 +541,33 @@ unitBoard.innerHTML=entries.length?entries.map(([floor,units])=>`
     </article>`;
    }).join('')}
   </div>
- </section>`).join(''):'<div class="unit-board-empty">لا توجد وحدات مسجلة حتى الآن. أضف بيانات الوحدات أولاً، وستظهر هنا في مجموعات حسب الدور، أربعة مربعات في كل صف.</div>';
+ </section>`).join(''):'<div class="unit-board-empty">لا توجد وحدات مسجلة حتى الآن.</div>';
+unitBoard.innerHTML += `
+ <section class="unit-floor-group">
+  <div class="unit-floor-title">حساب مستقل — الدور الأرضي</div>
+  <div class="unit-floor-grid">
+   <article class="unit-tile">
+    <div class="unit-tile-top"><span class="unit-number">مكتب الجلوي</span><span class="unit-lamp" title="حساب مستقل"></span></div>
+    <div class="unit-owner">مكتب الجلوي</div>
+    <div class="unit-tile-meta">الاشتراك: 100 جنيه</div>
+    <div class="unit-paid-label">${officePaidAmount(month)>=100?'تم السداد':'لم يتم السداد'}${officePaidAmount(month)>0?' · '+officePaidAmount(month)+' ج':''}</div>
+    <button class="unit-pay-button" onclick="quickPayOffice()">تسجيل سداد المكتب</button>
+   </article>
+  </div>
+ </section>`;
+}
+function officePaidAmount(month){
+ return data.payments.filter(p=>p.type==='office'&&p.month===month).reduce((sum,p)=>sum+Number(p.amount||0),0);
+}
+function quickPayOffice(){
+ const month=unitBoardMonth.value||dashboardMonth.value||months[0];
+ const paid=officePaidAmount(month);
+ if(paid>=100)return alert('مكتب الجلوي مسدد بالكامل لهذا الشهر.');
+ const remaining=100-paid;
+ if(!confirm(`تأكيد تسجيل سداد مكتب الجلوي بمبلغ ${remaining} جنيه عن ${monthLabel(month)}؟`))return;
+ data.payments.push({id:Date.now(),month,type:'office',unit:'مكتب الجلوي',name:'مكتب الجلوي',amount:remaining});
+ save();
+ alert('تم تسجيل سداد مكتب الجلوي.');
 }
 function quickPayUnit(number){
  const month=unitBoardMonth.value||dashboardMonth.value||months[0];
@@ -485,7 +586,7 @@ function quickPayUnit(number){
 function updateFee(){
 let u=data.units.find(x=>x.number===payUnit.value.trim());
 let typ=payType.value;
-if(typ==='office'){payAmount.value=100;feeHint.textContent='اشتراك المكتب الأرضي: 100 جنيه شهرياً.'}
+if(typ==='office'){payAmount.value=100;feeHint.textContent='اشتراك مكتب الجلوي: 100 جنيه شهرياً.'}
 else if(u){payAmount.value=feeFor(u.number,u.floor);feeHint.textContent='الاشتراك الشهري المقرر لهذه الوحدة: '+payAmount.value+' جنيه.'}
 else{payAmount.value='';feeHint.textContent='اكتب رقم وحدة مسجلاً لعرض الاشتراك المقرر.'}
 }
@@ -495,9 +596,9 @@ payType.addEventListener('change',()=>{payUnit.disabled=payType.value==='office'
 function addPayment(){
 let month=document.getElementById('month').value;
 let type=payType.value;
-let unit=type==='office'?'المكتب الأرضي':payUnit.value.trim();
+let unit=type==='office'?'مكتب الجلوي':payUnit.value.trim();
 let u=data.units.find(x=>x.number===unit);
-let name=type==='office'?'المكتب الأرضي':(u?.name||payName.value.trim());
+let name=type==='office'?'مكتب الجلوي':(u?.name||payName.value.trim());
 let amount=Number(payAmount.value);
 if(type==='unit'&&!unit)return alert('اكتب رقم الوحدة');
 if(type==='unit'&&!u)return alert('سجل الوحدة واسم صاحبها أولاً');
@@ -540,7 +641,7 @@ let expenses=es.reduce((s,e)=>s+Number(e.amount),0);
 reportTotal.textContent=income+' جنيه';
 reportExpenseTotal.textContent=expenses+' جنيه';
 reportBalance.textContent=(income-expenses)+' جنيه';
-paymentRows.innerHTML=ps.map(p=>`<tr><td>${monthLabel(p.month)}</td><td>${p.type==='office'?'المكتب الأرضي':'وحدة سكنية'}</td><td>${safe(p.unit)}</td><td>${safe(p.name)}</td><td>${p.amount} ج</td><td><button class="danger" onclick="delPay(${p.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد دفعات لهذا الشهر</td></tr>';
+paymentRows.innerHTML=ps.map(p=>`<tr><td>${monthLabel(p.month)}</td><td>${p.type==='office'?'مكتب الجلوي':'وحدة سكنية'}</td><td>${safe(p.unit)}</td><td>${safe(p.name)}</td><td>${p.amount} ج</td><td><button class="danger" onclick="delPay(${p.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد دفعات لهذا الشهر</td></tr>';
 reportExpenseRows.innerHTML=es.map(e=>`<tr><td>${safe(e.date)}</td><td>${safe(e.desc)}</td><td>${safe(e.receiver||'—')}</td><td>${e.amount} ج</td></tr>`).join('')||'<tr><td colspan="4">لا توجد مصروفات لهذا الشهر</td></tr>';
 }
 function renderHome(){
