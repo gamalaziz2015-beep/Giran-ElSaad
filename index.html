@@ -5,16 +5,28 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>جيران السعد - اتحاد الملاك</title>
 <style>
-body{margin:0;background:#f4f6fa;color:#182235;font-family:Tahoma,Arial}
-header{background:#101d36;color:white;padding:22px 16px;border-bottom:4px solid #d6b56d}
+body{margin:0;background:#f3f5f9;color:#182235;font-family:Tahoma,Arial}
+header{background:linear-gradient(135deg,#101d36,#203b62);color:white;padding:24px 16px;border-bottom:4px solid #d6b56d}
 header h1{margin:0;font-size:25px}
 header p{margin:7px 0;color:#d9e0eb}
 .manager{color:#d6b56d;font-weight:bold}
 main{max-width:1050px;margin:auto;padding:15px 12px 40px}
-.notice,.card,.panel{background:white;border:1px solid #e3e8f0;border-radius:12px;padding:14px;margin-bottom:12px}
+.notice,.card,.panel{background:white;border:1px solid #e3e8f0;border-radius:14px;padding:15px;margin-bottom:12px;box-shadow:0 3px 12px rgba(20,35,60,.04)}
 .notice{background:#fff8e8;line-height:1.8;font-size:13px}
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .card strong{display:block;font-size:22px;margin-top:8px}
+.metric-card{min-height:92px}
+.metric-card span{font-size:13px;color:#526078}
+.metric-card strong{font-size:23px;color:#142746}
+.metric-card small{display:block;color:#778398;margin-top:6px;font-size:11px}
+.metric-card.balance strong{color:white}
+.metric-card.balance span,.metric-card.balance small{color:#e2e9f3}
+.dashboard-filter{max-width:360px;margin:12px 0}
+.progress-card{padding:16px}
+.progress-heading{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.progress-heading strong{color:#187444}
+.progress-track{height:12px;background:#edf0f5;border-radius:20px;overflow:hidden;margin-top:12px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#26945d,#70c69a);border-radius:20px;transition:width .25s}
 nav{display:flex;gap:7px;overflow:auto;padding:10px 0}
 button{border:0;border-radius:9px;padding:11px;font-weight:bold;background:#101d36;color:white}
 nav button{white-space:nowrap}
@@ -33,8 +45,8 @@ th{background:#f5f7fb}
 .green{background:#e9f8ef;color:#187444}
 .muted{font-size:12px;color:#68758a;line-height:1.8}
 .balance{background:#101d36;color:white}
-@media(min-width:700px){.cards{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:450px){.grid{grid-template-columns:1fr}}
+@media(min-width:700px){.cards{grid-template-columns:repeat(3,1fr)}.dashboard-cards{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:450px){.grid{grid-template-columns:1fr}.metric-card strong{font-size:20px}}
 </style>
 </head>
 <body>
@@ -69,10 +81,21 @@ th{background:#f5f7fb}
 <section class="panel active" id="home">
 <h2>لوحة الإدارة</h2>
 <p>الوحدة 104 باسم Gamal kotb، والوحدة 1001 باسم محمد عبدالستار.</p>
-<div class="cards">
-<div class="card">إجمالي المقبوض<strong id="homeIncome">0 ج</strong></div>
-<div class="card">إجمالي المصروفات<strong id="homeExpenses">0 ج</strong></div>
-<div class="card balance">رصيد الصندوق<strong id="homeBalance">0 ج</strong></div>
+<div class="dashboard-filter">
+<label for="dashboardMonth">ملخص شهر</label>
+<select id="dashboardMonth" onchange="renderHome()"></select>
+</div>
+<div class="cards dashboard-cards">
+<div class="card metric-card"><span>إجمالي المقبوض</span><strong id="homeIncome">0 ج</strong><small>خلال الشهر المختار</small></div>
+<div class="card metric-card"><span>إجمالي المصروفات</span><strong id="homeExpenses">0 ج</strong><small>خلال الشهر المختار</small></div>
+<div class="card metric-card balance"><span>صافي الشهر</span><strong id="homeBalance">0 ج</strong><small>المقبوض ناقص المصروفات</small></div>
+<div class="card metric-card"><span>الوحدات المسددة</span><strong id="homePaid">0</strong><small>من الوحدات المسجلة</small></div>
+<div class="card metric-card"><span>الوحدات غير المسددة</span><strong id="homeUnpaid">0</strong><small>من الوحدات المسجلة</small></div>
+</div>
+<div class="card progress-card">
+<div class="progress-heading"><b>نسبة سداد الوحدات المسجلة</b><strong id="homeRate">0%</strong></div>
+<div class="progress-track"><div id="homeProgress" class="progress-fill"></div></div>
+<p class="muted" id="homeProgressText">لا توجد وحدات مسجلة بعد.</p>
 </div>
 <div class="actions">
 <button onclick="showTab('units')">إدارة الوحدات</button>
@@ -191,7 +214,7 @@ let n=['','يناير','فبراير','مارس','أبريل','مايو','يون
 return n[+m]+' '+y;
 }
 function fillMonths(){
-['month','reportMonth','expenseMonth'].forEach(id=>{
+['month','reportMonth','expenseMonth','dashboardMonth'].forEach(id=>{
 document.getElementById(id).innerHTML=months.map(m=>`<option value="${m}">${monthLabel(m)}</option>`).join('');
 });
 }
@@ -291,11 +314,26 @@ paymentRows.innerHTML=ps.map(p=>`<tr><td>${monthLabel(p.month)}</td><td>${p.type
 reportExpenseRows.innerHTML=es.map(e=>`<tr><td>${safe(e.date)}</td><td>${safe(e.desc)}</td><td>${safe(e.receiver||'—')}</td><td>${e.amount} ج</td></tr>`).join('')||'<tr><td colspan="4">لا توجد مصروفات لهذا الشهر</td></tr>';
 }
 function renderHome(){
-let income=data.payments.reduce((s,p)=>s+Number(p.amount),0);
-let expenses=data.expenses.reduce((s,e)=>s+Number(e.amount),0);
+let m=dashboardMonth.value || months[0];
+let ps=data.payments.filter(p=>p.month===m);
+let es=data.expenses.filter(e=>(e.month||e.date.slice(0,7))===m);
+let income=ps.reduce((s,p)=>s+Number(p.amount),0);
+let expenses=es.reduce((s,e)=>s+Number(e.amount),0);
+let paidSet=new Set(ps.filter(p=>p.type!=='office').map(p=>String(p.unit)));
+let registered=data.units.length;
+let paid=data.units.filter(u=>paidSet.has(String(u.number))).length;
+let unpaid=Math.max(0,registered-paid);
+let rate=registered?Math.round(paid/registered*100):0;
 homeIncome.textContent=income+' ج';
 homeExpenses.textContent=expenses+' ج';
 homeBalance.textContent=(income-expenses)+' ج';
+homePaid.textContent=paid;
+homeUnpaid.textContent=unpaid;
+homeRate.textContent=rate+'%';
+homeProgress.style.width=rate+'%';
+homeProgressText.textContent=registered
+ ? `تم سداد ${paid} من أصل ${registered} وحدة مسجلة في ${monthLabel(m)}.`
+ : 'أضف بيانات الوحدات أولاً لعرض نسبة السداد.';
 }
 
 function backupData(){
@@ -332,6 +370,7 @@ reader.readAsText(file);
 }
 
 fillMonths();
+dashboardMonth.value=months[0];
 expenseDate.value='2026-12-01';
 render();
 updateFee();
