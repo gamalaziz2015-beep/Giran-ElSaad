@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -44,9 +43,7 @@ th{background:#f5f7fb}
 <p>نظام إدارة العمارات واتحاد الملاك</p>
 <div class="manager">Gamal kotb</div>
 </header>
-
 <main>
-
 <div class="notice">
 <b>قواعد الحساب المعتمدة:</b><br>
 الدور الأول والثاني: 225 جنيه شهرياً للوحدة (بدون مصعد).<br>
@@ -55,14 +52,12 @@ th{background:#f5f7fb}
 <b>بداية السجل الجديد: ديسمبر 2026.</b><br>
 لا يُعتمد نوفمبر 2026، ولا تُرحّل المدفوعات النقدية الاستثنائية السابقة.
 </div>
-
 <div class="cards">
 <div class="card">عدد الوحدات المعتمد<strong>48</strong></div>
 <div class="card">اشتراك الأول والثاني<strong>225 ج</strong></div>
 <div class="card">اشتراك الثالث إلى 12<strong>250 ج</strong></div>
 <div class="card">مكتب الأرضي<strong>100 ج</strong></div>
 </div>
-
 <nav>
 <button class="active" data-tab="home">الرئيسية</button>
 <button data-tab="units">الوحدات والسكان</button>
@@ -74,20 +69,26 @@ th{background:#f5f7fb}
 <section class="panel active" id="home">
 <h2>لوحة الإدارة</h2>
 <p>الوحدة 104 باسم Gamal kotb، والوحدة 1001 باسم محمد عبدالستار.</p>
-
 <div class="cards">
 <div class="card">إجمالي المقبوض<strong id="homeIncome">0 ج</strong></div>
 <div class="card">إجمالي المصروفات<strong id="homeExpenses">0 ج</strong></div>
 <div class="card balance">رصيد الصندوق<strong id="homeBalance">0 ج</strong></div>
 </div>
-
 <div class="actions">
 <button onclick="showTab('units')">إدارة الوحدات</button>
 <button onclick="showTab('payments')">تسجيل دفعة</button>
 <button onclick="showTab('expenses')">إضافة مصروف</button>
 <button onclick="showTab('report')">التقارير</button>
 </div>
-
+<div class="card">
+<h3>حماية بيانات الاتحاد</h3>
+<p class="muted">احفظ نسخة احتياطية على جهازك بشكل دوري، ويمكن استرجاعها عند الحاجة.</p>
+<div class="actions">
+<button onclick="backupData()">حفظ نسخة احتياطية</button>
+<button onclick="document.getElementById('backupFile').click()">استرجاع نسخة احتياطية</button>
+</div>
+<input id="backupFile" type="file" accept=".json,application/json" style="display:none" onchange="restoreData(event)">
+</div>
 <p class="muted">هذه النسخة تحفظ البيانات على نفس الجهاز والمتصفح فقط. لم يتم ربط قاعدة بيانات مشتركة بعد.</p>
 </section>
 
@@ -98,127 +99,77 @@ th{background:#f5f7fb}
 <div><label>اسم المالك / الساكن</label><input id="uName" placeholder="الاسم"></div>
 <div><label>الدور</label><input id="uFloor" placeholder="مثال: الأول"></div>
 </div>
-<div class="actions">
-<button onclick="saveUnit()">حفظ بيانات الوحدة</button>
-</div>
-<div class="table-wrap">
-<table>
+<div class="actions"><button onclick="saveUnit()">حفظ بيانات الوحدة</button></div>
+<div class="table-wrap"><table>
 <thead><tr><th>رقم الوحدة</th><th>الاسم</th><th>الدور</th><th>الاشتراك الشهري</th><th>إجراء</th></tr></thead>
 <tbody id="unitRows"></tbody>
-</table>
-</div>
+</table></div>
 </section>
 
 <section class="panel" id="payments">
 <h2>تسجيل التحصيل الشهري</h2>
 <label>الشهر</label><select id="month"></select>
 <label>نوع الحساب</label>
-<select id="payType">
-<option value="unit">وحدة سكنية</option>
-<option value="office">مكتب الدور الأرضي</option>
-</select>
-<label>رقم الوحدة</label>
-<input id="payUnit" placeholder="مثال: 1001">
-<label>اسم الدافع</label>
-<input id="payName" placeholder="اسم المالك / الساكن">
-<label>المبلغ المدفوع فعلياً</label>
-<input id="payAmount" type="number" min="1">
+<select id="payType"><option value="unit">وحدة سكنية</option><option value="office">مكتب الدور الأرضي</option></select>
+<label>رقم الوحدة</label><input id="payUnit" placeholder="مثال: 1001">
+<label>اسم الدافع</label><input id="payName" placeholder="اسم المالك / الساكن">
+<label>المبلغ المدفوع فعلياً</label><input id="payAmount" type="number" min="1">
 <p class="muted" id="feeHint">اختر رقم الوحدة لعرض الاشتراك الشهري المقرر.</p>
-<div class="actions">
-<button onclick="addPayment()">تسجيل الدفعة</button>
-</div>
+<div class="actions"><button onclick="addPayment()">تسجيل الدفعة</button></div>
 </section>
 
 <section class="panel" id="expenses">
 <h2>إدارة المصروفات</h2>
 <p class="muted">سجل جميع مصروفات العمارة واحتفظ ببيان كل عملية.</p>
-
 <label>تاريخ المصروف</label>
 <input id="expenseDate" type="date" min="2026-12-01">
-
 <label>بيان المصروف</label>
 <input id="expenseDesc" placeholder="مثال: صيانة المصعد">
-
 <div class="grid">
-<div>
-<label>المبلغ بالجنيه</label>
-<input id="expenseAmount" type="number" min="1" placeholder="المبلغ">
+<div><label>المبلغ بالجنيه</label><input id="expenseAmount" type="number" min="1" placeholder="المبلغ"></div>
+<div><label>اسم المستلم / الجهة</label><input id="expenseReceiver" placeholder="اسم المستلم"></div>
 </div>
-<div>
-<label>اسم المستلم / الجهة</label>
-<input id="expenseReceiver" placeholder="اسم المستلم">
-</div>
-</div>
-
-<div class="actions">
-<button onclick="addExpense()">حفظ المصروف</button>
-</div>
-
+<div class="actions"><button onclick="addExpense()">حفظ المصروف</button></div>
 <hr>
 <h3>سجل المصروفات</h3>
 <label>عرض مصروفات شهر</label>
 <select id="expenseMonth" onchange="renderExpenses()"></select>
-
-<div class="card">
-إجمالي مصروفات الشهر
-<strong id="expenseTotal">0 جنيه</strong>
-</div>
-
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>التاريخ</th>
-<th>البيان</th>
-<th>المستلم</th>
-<th>المبلغ</th>
-<th>إجراء</th>
-</tr>
-</thead>
+<div class="card">إجمالي مصروفات الشهر<strong id="expenseTotal">0 جنيه</strong></div>
+<div class="table-wrap"><table>
+<thead><tr><th>التاريخ</th><th>البيان</th><th>المستلم</th><th>المبلغ</th><th>إجراء</th></tr></thead>
 <tbody id="expenseRows"></tbody>
-</table>
-</div>
+</table></div>
 </section>
 
 <section class="panel" id="report">
 <h2>التقرير الشهري</h2>
-<label>اختر الشهر</label>
-<select id="reportMonth" onchange="renderReport()"></select>
-
+<label>اختر الشهر</label><select id="reportMonth" onchange="renderReport()"></select>
 <div class="cards">
 <div class="card">إجمالي المقبوض<strong id="reportTotal">0 ج</strong></div>
 <div class="card">إجمالي المصروفات<strong id="reportExpenseTotal">0 ج</strong></div>
 <div class="card balance">صافي رصيد الشهر<strong id="reportBalance">0 ج</strong></div>
 </div>
-
 <h3>سجل التحصيل</h3>
-<div class="table-wrap">
-<table>
-<thead>
-<tr><th>الشهر</th><th>الحساب</th><th>الوحدة</th><th>الاسم</th><th>المبلغ</th><th>إجراء</th></tr>
-</thead>
+<div class="table-wrap"><table>
+<thead><tr><th>الشهر</th><th>الحساب</th><th>الوحدة</th><th>الاسم</th><th>المبلغ</th><th>إجراء</th></tr></thead>
 <tbody id="paymentRows"></tbody>
-</table>
-</div>
-
+</table></div>
 <h3>سجل المصروفات</h3>
-<div class="table-wrap">
-<table>
-<thead>
-<tr><th>التاريخ</th><th>البيان</th><th>المستلم</th><th>المبلغ</th></tr>
-</thead>
+<div class="table-wrap"><table>
+<thead><tr><th>التاريخ</th><th>البيان</th><th>المستلم</th><th>المبلغ</th></tr></thead>
 <tbody id="reportExpenseRows"></tbody>
-</table>
-</div>
+</table></div>
 </section>
-
 </main>
 
 <script>
 const KEY='giran_sa3d_v2';
-
-let data=JSON.parse(localStorage.getItem(KEY)||'{"units":[],"payments":[]}');
-
+let data;
+try{
+ data=JSON.parse(localStorage.getItem(KEY)||'{"units":[],"payments":[],"expenses":[]}');
+}catch(e){
+ data={units:[],payments:[],expenses:[]};
+}
 if(!Array.isArray(data.units))data.units=[];
 if(!Array.isArray(data.payments))data.payments=[];
 if(!Array.isArray(data.expenses))data.expenses=[];
@@ -227,125 +178,66 @@ const seed=[
 {number:'104',name:'Gamal kotb',floor:'الأول'},
 {number:'1001',name:'محمد عبدالستار',floor:'العاشر'}
 ];
-
-seed.forEach(s=>{
-if(!data.units.some(u=>u.number===s.number))data.units.push(s);
-});
+seed.forEach(s=>{if(!data.units.some(u=>u.number===s.number))data.units.push(s)});
 
 const months=[];
 for(let y=2026,m=12;y<2028&&(y<2027||m<=11);){
-months.push(`${y}-${String(m).padStart(2,'0')}`);
-m++;
-if(m===13){m=1;y++}
+ months.push(`${y}-${String(m).padStart(2,'0')}`);
+ m++;if(m===13){m=1;y++}
 }
-
 function monthLabel(v){
 let [y,m]=v.split('-');
 let n=['','يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 return n[+m]+' '+y;
 }
-
 function fillMonths(){
 ['month','reportMonth','expenseMonth'].forEach(id=>{
-document.getElementById(id).innerHTML=
-months.map(m=>`<option value="${m}">${monthLabel(m)}</option>`).join('');
+document.getElementById(id).innerHTML=months.map(m=>`<option value="${m}">${monthLabel(m)}</option>`).join('');
 });
 }
-
 function feeFor(number,floor){
 let f=Number(String(number).slice(0,1));
 if(f===1||f===2||floor==='الأول'||floor==='الثاني')return 225;
 if(f>=3&&f<=12)return 250;
 return 0;
 }
-
 function safe(s){
-return String(s).replace(/[&<>"']/g,c=>({
-'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-}[c]));
+return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
-
 function save(){
 localStorage.setItem(KEY,JSON.stringify(data));
 render();
 }
-
 function showTab(id){
-document.querySelectorAll('nav button').forEach(b=>
-b.classList.toggle('active',b.dataset.tab===id)
-);
-document.querySelectorAll('.panel').forEach(s=>
-s.classList.toggle('active',s.id===id)
-);
+document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));
+document.querySelectorAll('.panel').forEach(s=>s.classList.toggle('active',s.id===id));
 }
-
-document.querySelectorAll('nav button').forEach(b=>{
-b.onclick=()=>showTab(b.dataset.tab);
-});
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
 function saveUnit(){
-let number=uNumber.value.trim();
-let name=uName.value.trim();
-let floor=uFloor.value.trim();
-
+let number=uNumber.value.trim(),name=uName.value.trim(),floor=uFloor.value.trim();
 if(!number||!name)return alert('اكتب رقم الوحدة والاسم');
-
 let x=data.units.find(u=>u.number===number);
-
-if(x)Object.assign(x,{name,floor});
-else data.units.push({number,name,floor});
-
+if(x)Object.assign(x,{name,floor});else data.units.push({number,name,floor});
 uNumber.value=uName.value=uFloor.value='';
-save();
-alert('تم حفظ بيانات الوحدة');
+save();alert('تم حفظ بيانات الوحدة');
 }
-
 function deleteUnit(n){
-if(confirm('حذف الوحدة؟')){
-data.units=data.units.filter(u=>u.number!==n);
-save();
+if(confirm('حذف الوحدة؟')){data.units=data.units.filter(u=>u.number!==n);save()}
 }
-}
-
 function render(){
-unitRows.innerHTML=data.units.map(u=>`
-<tr>
-<td>${safe(u.number)}</td>
-<td>${safe(u.name)}</td>
-<td>${safe(u.floor||'—')}</td>
-<td>${feeFor(u.number,u.floor)} ج</td>
-<td><button class="danger" onclick="deleteUnit('${safe(u.number)}')">حذف</button></td>
-</tr>`).join('');
-
-renderReport();
-renderExpenses();
-renderHome();
+unitRows.innerHTML=data.units.map(u=>`<tr><td>${safe(u.number)}</td><td>${safe(u.name)}</td><td>${safe(u.floor||'—')}</td><td>${feeFor(u.number,u.floor)} ج</td><td><button class="danger" onclick="deleteUnit('${safe(u.number)}')">حذف</button></td></tr>`).join('');
+renderReport();renderExpenses();renderHome();
 }
-
 function updateFee(){
 let u=data.units.find(x=>x.number===payUnit.value.trim());
 let typ=payType.value;
-
-if(typ==='office'){
-payAmount.value=100;
-feeHint.textContent='اشتراك المكتب الأرضي: 100 جنيه شهرياً.';
+if(typ==='office'){payAmount.value=100;feeHint.textContent='اشتراك المكتب الأرضي: 100 جنيه شهرياً.'}
+else if(u){payAmount.value=feeFor(u.number,u.floor);feeHint.textContent='الاشتراك الشهري المقرر لهذه الوحدة: '+payAmount.value+' جنيه.'}
+else{payAmount.value='';feeHint.textContent='اكتب رقم وحدة مسجلاً لعرض الاشتراك المقرر.'}
 }
-else if(u){
-payAmount.value=feeFor(u.number,u.floor);
-feeHint.textContent='الاشتراك الشهري المقرر لهذه الوحدة: '+payAmount.value+' جنيه.';
-}
-else{
-payAmount.value='';
-feeHint.textContent='اكتب رقم وحدة مسجلاً لعرض الاشتراك المقرر.';
-}
-}
-
 payUnit.addEventListener('input',updateFee);
-
-payType.addEventListener('change',()=>{
-payUnit.disabled=payType.value==='office';
-updateFee();
-});
+payType.addEventListener('change',()=>{payUnit.disabled=payType.value==='office';updateFee()});
 
 function addPayment(){
 let month=document.getElementById('month').value;
@@ -354,132 +246,93 @@ let unit=type==='office'?'المكتب الأرضي':payUnit.value.trim();
 let u=data.units.find(x=>x.number===unit);
 let name=type==='office'?'المكتب الأرضي':(u?.name||payName.value.trim());
 let amount=Number(payAmount.value);
-
 if(type==='unit'&&!unit)return alert('اكتب رقم الوحدة');
 if(type==='unit'&&!u)return alert('سجل الوحدة واسم صاحبها أولاً');
 if(!name||amount<=0)return alert('راجع الاسم والمبلغ');
-
-data.payments.push({
-id:Date.now(),
-month,type,unit,name,amount
-});
-
-save();
-alert('تم تسجيل الدفعة بنجاح');
-payUnit.value='';
-payName.value='';
-payAmount.value='';
-updateFee();
+data.payments.push({id:Date.now(),month,type,unit,name,amount});
+save();alert('تم تسجيل الدفعة');
 }
-
 function delPay(id){
-if(confirm('حذف الدفعة؟')){
-data.payments=data.payments.filter(p=>p.id!==id);
-save();
+if(confirm('حذف الدفعة؟')){data.payments=data.payments.filter(p=>p.id!==id);save()}
 }
-}
-
 function addExpense(){
-let date=expenseDate.value;
-let desc=expenseDesc.value.trim();
-let amount=Number(expenseAmount.value);
-let receiver=expenseReceiver.value.trim();
-
+let date=document.getElementById('expenseDate').value;
+let desc=document.getElementById('expenseDesc').value.trim();
+let amount=Number(document.getElementById('expenseAmount').value);
+let receiver=document.getElementById('expenseReceiver').value.trim();
 if(!date)return alert('اختر تاريخ المصروف');
 if(date<'2026-12-01')return alert('بداية السجل الجديد ديسمبر 2026');
 if(!desc)return alert('اكتب بيان المصروف');
 if(amount<=0)return alert('اكتب مبلغاً صحيحاً');
-
-data.expenses.push({
-id:Date.now(),
-date,
-month:date.slice(0,7),
-desc,
-amount,
-receiver
-});
-
+data.expenses.push({id:Date.now(),date,month:date.slice(0,7),desc,amount,receiver});
 save();
-
-expenseDesc.value='';
-expenseAmount.value='';
-expenseReceiver.value='';
-
+expenseDesc.value='';expenseAmount.value='';expenseReceiver.value='';
 alert('تم حفظ المصروف بنجاح');
 }
-
 function deleteExpense(id){
-if(confirm('هل تريد حذف هذا المصروف؟')){
-data.expenses=data.expenses.filter(e=>e.id!==id);
-save();
+if(confirm('هل تريد حذف هذا المصروف؟')){data.expenses=data.expenses.filter(e=>e.id!==id);save()}
 }
-}
-
 function renderExpenses(){
 let m=expenseMonth.value;
 let es=data.expenses.filter(e=>(e.month||e.date.slice(0,7))===m);
-
-let total=es.reduce((s,e)=>s+Number(e.amount),0);
-expenseTotal.textContent=total+' جنيه';
-
-expenseRows.innerHTML=es.map(e=>`
-<tr>
-<td>${safe(e.date)}</td>
-<td>${safe(e.desc)}</td>
-<td>${safe(e.receiver||'—')}</td>
-<td>${e.amount} ج</td>
-<td><button class="danger" onclick="deleteExpense(${e.id})">حذف</button></td>
-</tr>
-`).join('')||'<tr><td colspan="5">لا توجد مصروفات لهذا الشهر</td></tr>';
+expenseTotal.textContent=es.reduce((s,e)=>s+Number(e.amount),0)+' جنيه';
+expenseRows.innerHTML=es.map(e=>`<tr><td>${safe(e.date)}</td><td>${safe(e.desc)}</td><td>${safe(e.receiver||'—')}</td><td>${e.amount} ج</td><td><button class="danger" onclick="deleteExpense(${e.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5">لا توجد مصروفات لهذا الشهر</td></tr>';
 }
-
 function renderReport(){
 let m=reportMonth.value;
-
 let ps=data.payments.filter(p=>p.month===m);
 let es=data.expenses.filter(e=>(e.month||e.date.slice(0,7))===m);
-
 let income=ps.reduce((s,p)=>s+Number(p.amount),0);
 let expenses=es.reduce((s,e)=>s+Number(e.amount),0);
-
 reportTotal.textContent=income+' جنيه';
 reportExpenseTotal.textContent=expenses+' جنيه';
 reportBalance.textContent=(income-expenses)+' جنيه';
-
-paymentRows.innerHTML=ps.map(p=>`
-<tr>
-<td>${monthLabel(p.month)}</td>
-<td>${p.type==='office'?'المكتب الأرضي':'وحدة سكنية'}</td>
-<td>${safe(p.unit)}</td>
-<td>${safe(p.name)}</td>
-<td>${p.amount} ج</td>
-<td><button class="danger" onclick="delPay(${p.id})">حذف</button></td>
-</tr>
-`).join('')||'<tr><td colspan="6">لا توجد دفعات لهذا الشهر</td></tr>';
-
-reportExpenseRows.innerHTML=es.map(e=>`
-<tr>
-<td>${safe(e.date)}</td>
-<td>${safe(e.desc)}</td>
-<td>${safe(e.receiver||'—')}</td>
-<td>${e.amount} ج</td>
-</tr>
-`).join('')||'<tr><td colspan="4">لا توجد مصروفات لهذا الشهر</td></tr>';
+paymentRows.innerHTML=ps.map(p=>`<tr><td>${monthLabel(p.month)}</td><td>${p.type==='office'?'المكتب الأرضي':'وحدة سكنية'}</td><td>${safe(p.unit)}</td><td>${safe(p.name)}</td><td>${p.amount} ج</td><td><button class="danger" onclick="delPay(${p.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="6">لا توجد دفعات لهذا الشهر</td></tr>';
+reportExpenseRows.innerHTML=es.map(e=>`<tr><td>${safe(e.date)}</td><td>${safe(e.desc)}</td><td>${safe(e.receiver||'—')}</td><td>${e.amount} ج</td></tr>`).join('')||'<tr><td colspan="4">لا توجد مصروفات لهذا الشهر</td></tr>';
 }
-
 function renderHome(){
 let income=data.payments.reduce((s,p)=>s+Number(p.amount),0);
 let expenses=data.expenses.reduce((s,e)=>s+Number(e.amount),0);
-
 homeIncome.textContent=income+' ج';
 homeExpenses.textContent=expenses+' ج';
 homeBalance.textContent=(income-expenses)+' ج';
 }
 
+function backupData(){
+try{
+const content=JSON.stringify(data,null,2);
+const blob=new Blob([content],{type:'application/json'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='giran-sa3d-backup.json';
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+}catch(e){alert('تعذر إنشاء النسخة الاحتياطية')}
+}
+function restoreData(event){
+const file=event.target.files&&event.target.files[0];
+if(!file)return;
+const reader=new FileReader();
+reader.onload=function(){
+try{
+const saved=JSON.parse(reader.result);
+if(!saved||!Array.isArray(saved.units)||!Array.isArray(saved.payments)||!Array.isArray(saved.expenses)){
+throw new Error('invalid backup');
+}
+if(!confirm('سيتم استبدال البيانات الحالية بالنسخة المختارة. هل توافق؟'))return;
+localStorage.setItem(KEY,JSON.stringify(saved));
+alert('تم استرجاع البيانات بنجاح');
+location.reload();
+}catch(e){alert('ملف النسخة الاحتياطية غير صالح أو تالف')}
+};
+reader.readAsText(file);
+}
+
 fillMonths();
-
 expenseDate.value='2026-12-01';
-
 render();
 updateFee();
 </script>
