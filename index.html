@@ -13,7 +13,7 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,Arial,
 .sidebar{width:252px;flex:0 0 252px;background:linear-gradient(180deg,#101d36 0%,#172b49 100%);color:#fff;min-height:100vh;padding:22px 15px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;box-shadow:-8px 0 28px rgba(12,24,44,.08);z-index:5}
 .brand-block{display:flex;align-items:center;gap:12px;padding:4px 7px 25px;border-bottom:1px solid rgba(255,255,255,.12)}
 .brand-mark{width:54px;height:54px;border-radius:14px;background:linear-gradient(145deg,#8eaaa5,#496d70);color:#17243a;display:grid;place-items:center;font-size:26px;font-weight:900;box-shadow:0 6px 16px rgba(215,182,109,.18)}
-.brand-block h1{font-size:25px;margin:0 0 5px;color:#fff}
+.brand-block h1{font-size:32px;margin:0 0 5px;color:#fff}
 .brand-block p{margin:0;color:#c4cede;font-size:13px}
 .profile-block{display:flex;flex-direction:column;align-items:center;text-align:center;padding:25px 8px 22px;margin:0 4px 8px;border-bottom:1px solid rgba(255,255,255,.13)}
 .profile-photo-wrap{width:124px;height:124px;border-radius:50%;padding:4px;background:linear-gradient(145deg,#a5c0b9,#527b7b);box-shadow:0 5px 20px rgba(0,0,0,.25)}
@@ -33,7 +33,7 @@ nav button.active .nav-icon{background:var(--gold);color:var(--navy)}
 .gold-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(215,182,109,.12)}
 .workspace{min-width:0;flex:1}
 .topbar{height:88px;background:#e1e9e8;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:13px 30px;position:sticky;top:0;z-index:4}
-.eyebrow{font-size:11px;color:var(--muted)}
+.eyebrow{font-size:14px;color:var(--muted);font-weight:700}
 .topbar h2{font-size:21px;margin:5px 0 0;color:var(--navy)}
 .topbar-user{display:flex;align-items:center;gap:10px}
 .user-avatar{width:38px;height:38px;border-radius:12px;background:#f5ecd8;color:#77571f;display:grid;place-items:center;font-weight:bold}
@@ -129,7 +129,7 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
  .nav-icon{width:25px;height:25px;flex-basis:25px;font-size:17px;border-radius:8px}
  .topbar{height:82px;padding:10px 15px}
  .topbar h2{font-size:17px}
- .eyebrow{font-size:9px}
+ .eyebrow{font-size:12px}
  .topbar-user b{font-size:14px}
  .topbar-user small{font-size:11px}
  .user-avatar{width:33px;height:33px}
@@ -191,6 +191,44 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
  .metric-card strong{font-size:15px}
 }
 
+
+/* تطوير الهوية البصرية: كحلي وذهبي فاخر */
+:root{--navy:#101d36;--navy2:#1b3154;--gold:#d7b66d;--gold2:#c6a45f;--ink:#263247;--muted:#7b8494;--paper:#f2f4f8;--line:#dce1e9;--white:#fff;--green:#27845c;--red:#bd4c55}
+body{background:#f2f4f8;color:#263247}
+.sidebar{background:linear-gradient(180deg,#0d1930 0%,#1a2e4d 100%)}
+.brand-mark{background:linear-gradient(145deg,#f0d28c,#c6a45f);color:#101d36}
+.brand-block h1{font-size:34px;letter-spacing:.2px}
+.profile-photo-wrap{background:linear-gradient(145deg,#f0d28c,#a77e35)}
+.profile-name{color:#f0d28c}
+nav button.active{background:linear-gradient(100deg,rgba(215,182,109,.22),rgba(215,182,109,.08));border-color:rgba(215,182,109,.48);color:#f0d28c}
+.nav-icon{color:#e8c779}
+.topbar{background:#fff;border-bottom:1px solid #dce1e9}
+.topbar h2,h2,h3{color:#142746}
+.card,.notice,.progress-card,.panel>.card{background:#fff;border-color:#dce1e9;box-shadow:0 7px 22px rgba(16,29,54,.055)}
+.metric-card{background:linear-gradient(145deg,#fff,#f4f6fa);border-color:#dce1e9}
+.metric-card span{color:#657188}
+.metric-card strong{color:#142746}
+.metric-card:after{background:rgba(215,182,109,.16)}
+.metric-card.net-card{background:linear-gradient(135deg,#101d36,#243e65);border-color:#243e65}
+.metric-card.net-card span,.metric-card.net-card small{color:#e5eaf2}
+.metric-card.net-card strong{color:#f0d28c}
+.primary-actions button,.actions button{background:linear-gradient(135deg,#101d36,#263f66);border-color:#344d72;color:#fff}
+.primary-actions button span{color:#f0d28c}
+.unit-floor-group{background:#eef1f6;border-color:#d8dfeb}
+.unit-floor-title{color:#142746}
+.unit-tile{background:linear-gradient(145deg,#fff,#f3f5f9);border-color:#d6ddea}
+.unit-tile.paid{background:linear-gradient(145deg,#eff8f2,#e1f0e7);border-color:#9bc9ac}
+.unit-tile.unpaid{border-color:#d8a0a3}
+.unit-number{color:#142746}
+.unit-pay-button{background:#172e50}
+.unit-tile.paid .unit-pay-button{background:#39785b}
+.table-wrap{background:#fff;border-color:#dce1e9}
+th{background:#edf1f7;color:#263d60}
+tbody tr:hover{background:#f5f7fb}
+input,select{border-color:#d7deea}
+input:focus,select:focus{border-color:#c6a45f;box-shadow:0 0 0 3px rgba(215,182,109,.16)}
+@media(max-width:700px){.brand-block h1{font-size:30px}}
+
 </style>
 </head>
 <body>
@@ -228,9 +266,11 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
 <main>
 <section class="panel active" id="home">
 <div class="cards dashboard-cards financial-cards">
-  <div class="card metric-card"><span>إجمالي المقبوض</span><strong id="homeIncome">0 ج</strong><small>خلال الشهر المختار</small></div>
-  <div class="card metric-card"><span>إجمالي المصروفات</span><strong id="homeExpenses">0 ج</strong><small>خلال الشهر المختار</small></div>
-  <div class="card metric-card net-card"><span>صافي الشهر</span><strong id="homeBalance">0 ج</strong><small>المقبوض ناقص المصروفات</small></div>
+  <div class="card metric-card"><span>إيراد الشهر</span><strong id="homeIncome">0 ج</strong><small>إجمالي التحصيل في الشهر المختار</small></div>
+  <div class="card metric-card"><span>مصروفات الشهر</span><strong id="homeExpenses">0 ج</strong><small>إجمالي مصروفات الشهر المختار</small></div>
+  <div class="card metric-card net-card"><span>صافي الشهر</span><strong id="homeBalance">0 ج</strong><small>الإيراد ناقص المصروفات</small></div>
+  <div class="card metric-card"><span>إيراد الشهور السابقة</span><strong id="homePreviousIncome">0 ج</strong><small>من بداية الحساب حتى الشهر السابق</small></div>
+  <div class="card metric-card"><span>رصيد الصندوق التراكمي</span><strong id="homeFundBalance">0 ج</strong><small>كل الإيرادات ناقص كل المصروفات</small></div>
 </div>
 
 <div class="actions primary-actions">
@@ -272,6 +312,7 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
 <div><label>رقم الوحدة</label><input id="uNumber" placeholder="مثال: 104"></div>
 <div><label>اسم المالك / الساكن</label><input id="uName" placeholder="الاسم"></div>
 <div><label>الدور</label><input id="uFloor" placeholder="مثال: الأول"></div>
+<div><label>حالة الوحدة</label><select id="uStatus"><option value="occupied">مشغولة / عليها اشتراك</option><option value="vacant">خالية / بدون اشتراك</option></select></div>
 </div>
 <div class="actions"><button onclick="saveUnit()">حفظ بيانات الوحدة</button></div>
 <div class="unit-board-head">
@@ -324,7 +365,7 @@ hr{border:0;border-top:1px solid var(--line);margin:20px 0}
 <h2>التقرير الشهري</h2>
 <label>اختر الشهر</label><select id="reportMonth" onchange="renderReport()"></select>
 <div class="cards">
-<div class="card">إجمالي المقبوض<strong id="reportTotal">0 ج</strong></div>
+<div class="card">إيراد الشهر<strong id="reportTotal">0 ج</strong></div>
 <div class="card">إجمالي المصروفات<strong id="reportExpenseTotal">0 ج</strong></div>
 <div class="card balance">صافي رصيد الشهر<strong id="reportBalance">0 ج</strong></div>
 </div>
@@ -408,17 +449,17 @@ const seed=[
 {number:'403',name:'محمود عوف',floor:'الرابع'},
 {number:'404',name:'لولا',floor:'الرابع'},
 {number:'501',name:'أم أحمد',floor:'الخامس'},
-{number:'502',name:'منطقة وخالية',floor:'الخامس'},
+{number:'502',name:'خالية',floor:'الخامس',status:'vacant'},
 {number:'503',name:'أم عبدالرحمن',floor:'الخامس'},
 {number:'504',name:'ياسر الحاوي',floor:'الخامس'},
 {number:'601',name:'محمد عبدالرحمن',floor:'السادس'},
-{number:'602',name:'منطقة وخالية',floor:'السادس'},
+{number:'602',name:'خالية',floor:'السادس',status:'vacant'},
 {number:'603',name:'سعيد فاروق',floor:'السادس'},
-{number:'604',name:'مصطفى صاوي',floor:'السادس'},
+{number:'604',name:'خالية',floor:'السادس',status:'vacant'},
 {number:'701',name:'حسام محمد',floor:'السابع'},
 {number:'702',name:'أحمد هشام',floor:'السابع'},
 {number:'703',name:'حسن محمد',floor:'السابع'},
-{number:'704',name:'منطقة وخالية',floor:'السابع'},
+{number:'704',name:'اسم المالك غير مؤكد',floor:'السابع',status:'occupied'},
 {number:'801',name:'جمال محمد',floor:'الثامن'},
 {number:'802',name:'محمد حاموكشا',floor:'الثامن'},
 {number:'803',name:'أم هشام',floor:'الثامن'},
@@ -445,7 +486,8 @@ seed.forEach(s=>{
  if(!existing)data.units.push({...s});
  else {
    existing.floor=s.floor;
-   if(['104','802','1001'].includes(s.number))existing.name=s.name;
+   if(['104','802','1001','502','602','604','704'].includes(s.number))existing.name=s.name;
+   if(s.status)existing.status=s.status;
  }
 });
 // المكتب حساب مستقل عن الوحدات السكنية
@@ -467,7 +509,9 @@ function fillMonths(){
 document.getElementById(id).innerHTML=months.map(m=>`<option value="${m}">${monthLabel(m)}</option>`).join('');
 });
 }
+function isVacantUnit(number){const u=data.units.find(x=>String(x.number)===String(number));return !!u&&u.status==='vacant';}
 function feeFor(number,floor){
+if(isVacantUnit(number))return 0;
 let f=Number(String(floor||'').match(/[0-9]+/)?.[0]||0);
 let word=String(floor||'').trim();
 const ordinal={'الأول':1,'الاول':1,'الأولى':1,'الثاني':2,'الثانى':2,'الثالث':3,'الثالثة':3,'الرابع':4,'الخامس':5,'السادس':6,'السابع':7,'الثامن':8,'التاسع':9,'العاشر':10,'الحادي عشر':11,'الحادى عشر':11,'الثاني عشر':12,'الثانى عشر':12};
@@ -493,18 +537,18 @@ window.scrollTo({top:0,behavior:'smooth'});
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 
 function saveUnit(){
-let number=uNumber.value.trim(),name=uName.value.trim(),floor=uFloor.value.trim();
+let number=uNumber.value.trim(),name=uName.value.trim(),floor=uFloor.value.trim(),status=uStatus.value||'occupied';
 if(!number||!name)return alert('اكتب رقم الوحدة والاسم');
 let x=data.units.find(u=>u.number===number);
-if(x)Object.assign(x,{name,floor});else data.units.push({number,name,floor});
-uNumber.value=uName.value=uFloor.value='';
+if(x)Object.assign(x,{name,floor,status});else data.units.push({number,name,floor,status});
+uNumber.value=uName.value=uFloor.value='';uStatus.value='occupied';
 save();alert('تم حفظ بيانات الوحدة');
 }
 function deleteUnit(n){
 if(confirm('حذف الوحدة؟')){data.units=data.units.filter(u=>u.number!==n);save()}
 }
 function render(){
-unitRows.innerHTML=data.units.map(u=>`<tr><td>${safe(u.number)}</td><td>${safe(u.name)}</td><td>${safe(u.floor||'—')}</td><td>${feeFor(u.number,u.floor)} ج</td><td><button class="danger" onclick="deleteUnit('${safe(u.number)}')">حذف</button></td></tr>`).join('');
+unitRows.innerHTML=data.units.map(u=>`<tr><td>${safe(u.number)}</td><td>${safe(u.name)}</td><td>${safe(u.floor||'—')}</td><td>${u.status==='vacant'?'خالية — بدون اشتراك':feeFor(u.number,u.floor)+' ج'}</td><td><button class="danger" onclick="deleteUnit('${safe(u.number)}')">حذف</button></td></tr>`).join('');
 renderReport();renderExpenses();renderHome();renderUnitBoard();fillStatementSelectors();renderStatement();
 }
 function unitPaidAmount(unitNumber, month){
@@ -530,14 +574,15 @@ unitBoard.innerHTML=entries.length?entries.map(([floor,units])=>`
    ${units.map(u=>{
     const fee=feeFor(u.number,u.floor);
     const paid=unitPaidAmount(u.number,month);
+    const vacant=u.status==='vacant';
     const isPaid=fee>0&&paid>=fee;
-    const label=isPaid?'تم السداد':(paid>0?'سداد جزئي':'لم يتم السداد');
-    return `<article class="unit-tile ${isPaid?'paid':'unpaid'}">
+    const label=vacant?'خالية — بدون اشتراك':(isPaid?'تم السداد':(paid>0?'سداد جزئي':'لم يتم السداد'));
+    return `<article class="unit-tile ${vacant?'':(isPaid?'paid':'unpaid')}">
       <div class="unit-tile-top"><span class="unit-number">وحدة ${safe(u.number)}</span><span class="unit-lamp" title="${label}"></span></div>
       <div class="unit-owner">${safe(u.name)}</div>
-      <div class="unit-tile-meta">${fee?`الاشتراك: ${fee} جنيه`:'راجع الدور لتحديد الاشتراك'}</div>
+      <div class="unit-tile-meta">${vacant?'لا تستحق اشتراكاً حالياً':(fee?`الاشتراك: ${fee} جنيه`:'راجع الدور لتحديد الاشتراك')}</div>
       <div class="unit-paid-label">${label}${paid>0?` · ${paid} ج`:''}</div>
-      <button class="unit-pay-button" onclick="quickPayUnit('${safe(u.number)}')">${isPaid?'تم السداد ✓':'تسجيل السداد'}</button>
+      ${vacant?'<button class="unit-pay-button" disabled>وحدة خالية</button>':`<button class="unit-pay-button" onclick="quickPayUnit('${safe(u.number)}')">${isPaid?'تم السداد ✓':'تسجيل السداد'}</button>`}
     </article>`;
    }).join('')}
   </div>
@@ -573,6 +618,7 @@ function quickPayUnit(number){
  const month=unitBoardMonth.value||dashboardMonth.value||months[0];
  const unit=data.units.find(u=>String(u.number)===String(number));
  if(!unit)return alert('لم يتم العثور على الوحدة');
+ if(unit.status==='vacant')return alert('هذه الوحدة خالية ولا يُحتسب عليها اشتراك حالياً.');
  const fee=feeFor(unit.number,unit.floor);
  if(!fee)return alert('لا يمكن تحديد الاشتراك. راجع الدور المسجل لهذه الوحدة أولاً.');
  const already=unitPaidAmount(number,month);
@@ -650,8 +696,12 @@ let ps=data.payments.filter(p=>p.month===m);
 let es=data.expenses.filter(e=>(e.month||e.date.slice(0,7))===m);
 let income=ps.reduce((s,p)=>s+Number(p.amount),0);
 let expenses=es.reduce((s,e)=>s+Number(e.amount),0);
-let registered=data.units.length;
-let paid=data.units.filter(u=>{
+let previousIncome=data.payments.filter(p=>p.month<m).reduce((sum,p)=>sum+Number(p.amount||0),0);
+let cumulativeIncome=data.payments.filter(p=>p.month<=m).reduce((sum,p)=>sum+Number(p.amount||0),0);
+let cumulativeExpenses=data.expenses.filter(e=>(e.month||e.date.slice(0,7))<=m).reduce((sum,e)=>sum+Number(e.amount||0),0);
+let chargeable=data.units.filter(u=>u.status!=='vacant');
+let registered=chargeable.length;
+let paid=chargeable.filter(u=>{
  let total=ps.filter(p=>p.type!=='office'&&String(p.unit)===String(u.number)).reduce((s,p)=>s+Number(p.amount||0),0);
  let fee=feeFor(u.number,u.floor);
  return fee>0&&total>=fee;
@@ -661,6 +711,8 @@ let rate=registered?Math.round(paid/registered*100):0;
 homeIncome.textContent=income+' ج';
 homeExpenses.textContent=expenses+' ج';
 homeBalance.textContent=(income-expenses)+' ج';
+homePreviousIncome.textContent=previousIncome+' ج';
+homeFundBalance.textContent=(cumulativeIncome-cumulativeExpenses)+' ج';
 homePaid.textContent=paid;
 homeUnpaid.textContent=unpaid;
 homeRate.textContent=rate+'%';
