@@ -3,137 +3,248 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243e">
 <title>اتحاد ملاك جيران السعد</title>
+
 <style>
 :root{
  --navy:#10243e;
- --navy2:#193858;
+ --navy2:#1b3858;
  --gold:#c6a45c;
- --bg:#f2f4f7;
+ --goldlight:#ead49c;
+ --bg:#f1f3f6;
  --white:#fff;
  --green:#198754;
  --red:#c0392b;
- --muted:#788493;
+ --muted:#778496;
 }
 *{box-sizing:border-box}
 body{
- margin:0;background:var(--bg);color:#243449;
+ margin:0;
+ padding-bottom:95px;
+ background:var(--bg);
+ color:#26374b;
  font-family:Tahoma,Arial,sans-serif;
 }
 header{
  background:linear-gradient(120deg,var(--navy),var(--navy2));
- color:white;padding:20px 16px;
+ color:white;
+ padding:20px 16px;
  border-bottom:4px solid var(--gold);
 }
-header h1{margin:0;font-size:25px;color:#e5c77f}
-header p{margin:8px 0 0;color:#dce3ed}
-.container{max-width:1200px;margin:auto;padding:14px}
-nav{
- display:flex;gap:7px;overflow-x:auto;padding:12px 0;
+.header-row{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
 }
-nav button{
- flex-shrink:0;border:0;border-radius:9px;padding:11px 15px;
- background:var(--navy);color:white;font-weight:bold;
+header h1{
+ color:var(--goldlight);
+ font-size:23px;
+ margin:0;
 }
-nav button.active{background:var(--gold);color:#17283d}
-button{cursor:pointer;font-family:inherit}
+header p{margin:8px 0 0;color:#d9e1eb;font-size:13px}
+.logo{
+ width:48px;height:48px;
+ border:2px solid var(--gold);
+ border-radius:12px;
+ display:grid;place-items:center;
+ color:var(--goldlight);
+ font-size:25px;
+}
+.container{max-width:1150px;margin:auto;padding:13px}
+h2{color:var(--navy);font-size:20px}
+h3{color:var(--navy);font-size:16px}
 .card{
- background:white;border-radius:13px;padding:15px;
- box-shadow:0 3px 12px #17283d12;margin-bottom:13px;
+ background:white;
+ padding:15px;
+ border-radius:13px;
+ margin-bottom:13px;
+ box-shadow:0 3px 12px #10243e10;
 }
 .cards{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
- gap:10px;margin:12px 0;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+ gap:10px;margin:13px 0;
 }
 .stat{
- background:white;border-right:4px solid var(--gold);
- padding:15px;border-radius:10px;
+ background:white;
+ padding:14px;
+ border-radius:11px;
+ border-right:4px solid var(--gold);
+ font-size:13px;
 }
-.stat strong{display:block;font-size:23px;color:var(--navy);margin-top:8px}
-h2,h3{color:var(--navy)}
-h2{font-size:20px}
+.stat strong{
+ display:block;
+ color:var(--navy);
+ font-size:21px;
+ margin-top:9px;
+}
 .section{display:none}
 .section.active{display:block}
-button.primary,.primary{
- background:var(--navy);color:white;border:0;
- border-radius:8px;padding:10px 15px;
+button{
+ font-family:inherit;cursor:pointer;
 }
-button.gold{background:var(--gold);color:#17283d}
-button.danger{background:var(--red);color:white}
-button.small{padding:6px 9px;font-size:12px}
+.primary,.gold-btn,.danger{
+ border:0;border-radius:8px;
+ padding:10px 14px;font-weight:bold;
+}
+.primary{background:var(--navy);color:white}
+.gold-btn{background:var(--gold);color:var(--navy)}
+.danger{background:var(--red);color:white}
+.small{font-size:11px;padding:7px}
 input,select,textarea{
- width:100%;padding:11px;margin:6px 0 12px;
- border:1px solid #d7dce3;border-radius:8px;
- font-family:inherit;background:white;
+ width:100%;padding:11px;
+ margin:7px 0 12px;
+ border:1px solid #d9dfe7;
+ border-radius:8px;
+ background:white;
+ font-family:inherit;
 }
 label{font-size:13px;font-weight:bold}
 .form-grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
  gap:8px;
 }
 .floor{
- background:white;border-radius:12px;padding:13px;
- margin:12px 0;border:1px solid #e5e8ed;
+ background:white;
+ padding:12px;
+ margin:12px 0;
+ border-radius:12px;
+ border:1px solid #e3e6eb;
 }
-.floor h3{border-bottom:1px solid #eee;padding-bottom:10px}
+.floor h3{
+ border-bottom:1px solid #eee;
+ padding-bottom:10px;
+}
 .units{
- display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
  gap:8px;
 }
 .unit{
- background:#f7f8fa;border:1px solid #e0e4e9;
- border-radius:9px;padding:9px 5px;text-align:center;
  min-width:0;
+ padding:9px 3px;
+ background:#f7f8fa;
+ border:1px solid #e1e5eb;
+ border-radius:9px;
+ text-align:center;
 }
-.unit strong{display:block;color:var(--navy);font-size:17px}
-.unit small{display:block;font-size:11px;color:var(--muted);margin:5px 0}
-.unit .status{font-size:11px;font-weight:bold}
-.paid{color:var(--green)}
-.unpaid{color:var(--red)}
-.vacant{color:#b17b19}
-.unit button{margin-top:7px;width:100%;font-size:11px;padding:7px 2px}
+.unit strong{
+ display:block;
+ font-size:16px;
+ color:var(--navy);
+}
+.unit small{
+ display:block;
+ color:var(--muted);
+ font-size:10px;
+ margin:5px 0;
+}
+.unit button{
+ width:100%;margin-top:6px;
+ padding:7px 1px;font-size:10px;
+}
 .office{
- border:2px solid var(--gold);background:#fffaf0;
+ background:#fff9e9;
+ border:2px solid var(--gold);
 }
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:10px 6px;border-bottom:1px solid #e6e9ee;text-align:right}
-th{background:#f0f2f5;color:var(--navy)}
+.paid{color:var(--green);font-weight:bold}
+.unpaid{color:var(--red);font-weight:bold}
+.vacant{color:#b17b19;font-weight:bold}
 .table-wrap{overflow-x:auto}
-.notice{background:#fff8e8;padding:12px;border-radius:8px;font-size:13px}
-.hidden{display:none!important}
-footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
-@media(max-width:480px){
- header h1{font-size:21px}
- .units{gap:5px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{
+ padding:10px 6px;
+ border-bottom:1px solid #e7eaf0;
+ text-align:right;
+ white-space:nowrap;
+}
+th{background:#f0f2f5;color:var(--navy)}
+.notice{
+ background:#fff8e8;
+ border-right:3px solid var(--gold);
+ padding:11px;
+ border-radius:7px;
+ font-size:12px;
+}
+.bottom-nav{
+ position:fixed;
+ bottom:0;right:0;left:0;
+ z-index:1000;
+ display:flex;
+ justify-content:space-around;
+ align-items:center;
+ background:var(--navy);
+ border-top:3px solid var(--gold);
+ padding:8px 2px calc(8px + env(safe-area-inset-bottom));
+ box-shadow:0 -4px 15px #0002;
+}
+.bottom-nav button{
+ flex:1;min-width:0;
+ border:0;background:transparent;
+ color:var(--goldlight);
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ gap:4px;
+ padding:5px 1px;
+}
+.bottom-nav button span{font-size:22px;line-height:25px}
+.bottom-nav button small{font-size:9px;white-space:nowrap}
+.bottom-nav button.active{
+ color:white;
+ background:#294766;
+ border-radius:8px;
+}
+.bottom-nav button.active span{color:var(--goldlight)}
+.roles{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:9px;
+}
+.role{
+ padding:12px;
+ background:#f5f6f8;
+ border-radius:9px;
+ border-right:3px solid var(--gold);
+}
+.role strong{display:block;color:var(--navy);font-size:13px}
+.role small{color:var(--muted);font-size:11px}
+.empty{text-align:center;color:var(--muted);padding:15px}
+footer{text-align:center;color:#8993a0;font-size:11px;padding:15px}
+@media(max-width:380px){
+ header h1{font-size:19px}
+ .units{gap:4px}
  .unit{padding:7px 2px}
- .unit strong{font-size:15px}
- .unit small{font-size:10px}
+ .unit strong{font-size:14px}
+ .bottom-nav button small{font-size:8px}
+ .bottom-nav button span{font-size:20px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
- <h1 id="appTitle">اتحاد ملاك جيران السعد</h1>
- <p>نظام إدارة العمارات</p>
- <p>Gamal kotb</p>
+ <div class="header-row">
+  <div>
+   <h1 id="appTitle">اتحاد ملاك جيران السعد</h1>
+   <p>نظام إدارة العمارات</p>
+   <p>Gamal kotb</p>
+  </div>
+  <div class="logo">⌂</div>
+ </div>
 </header>
 
 <div class="container">
-<nav id="nav">
- <button class="active" data-page="dashboard">الرئيسية</button>
- <button data-page="apartments">الشقق</button>
- <button data-page="payments">التحصيل</button>
- <button data-page="expenses">المصروفات</button>
- <button data-page="reports">التقارير</button>
- <button data-page="services">الخدمات</button>
- <button data-page="settings">الإعدادات</button>
-</nav>
 
 <!-- الرئيسية -->
 <section id="dashboard" class="section active">
  <h2>لوحة الإدارة الرئيسية</h2>
+
  <div class="cards">
   <div class="stat">إيراد الشهر<strong id="income">0 ج</strong></div>
   <div class="stat">مصروفات الشهر<strong id="expenseTotal">0 ج</strong></div>
@@ -141,26 +252,43 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
   <div class="stat">الوحدات المدفوعة<strong id="paidCount">0</strong></div>
   <div class="stat">الوحدات غير المدفوعة<strong id="unpaidCount">0</strong></div>
  </div>
+
  <div class="card">
-  <h3>ملخص الاشتراكات الشهرية</h3>
-  <p>اشتراك الأول والثاني: 225 جنيهًا.</p>
-  <p>اشتراك الثالث حتى الثاني عشر: 250 جنيهًا.</p>
-  <p>اشتراك مكتب الدور الأرضي: 100 جنيه.</p>
-  <p class="notice">الوحدات الخالية: 502 و602 و604. لا تحتسب لها اشتراكات حتى تغيير حالتها.</p>
+  <h3>الاشتراكات المعتمدة</h3>
+  <p>الأول والثاني: 225 جنيهًا.</p>
+  <p>الثالث حتى الثاني عشر: 250 جنيهًا.</p>
+  <p>مكتب الدور الأرضي: 100 جنيه.</p>
+  <div class="notice">
+   الوحدات الخالية: 502 و602 و604.
+   لا تُحتسب لها اشتراكات حتى تغيير حالتها.
+  </div>
  </div>
+
  <div class="card">
   <h3>آخر التحصيلات</h3>
   <div class="table-wrap">
-   <table><thead><tr><th>الوحدة</th><th>الشهر</th><th>المبلغ</th><th>التاريخ</th></tr></thead>
-   <tbody id="latestPayments"></tbody></table>
+   <table>
+    <thead><tr><th>الوحدة</th><th>الشهر</th><th>المبلغ</th><th>التاريخ</th></tr></thead>
+    <tbody id="latestPayments"></tbody>
+   </table>
+  </div>
+ </div>
+
+ <div class="card">
+  <h3>مسؤولو الاتحاد</h3>
+  <div class="roles">
+   <div class="role"><strong>المدير</strong><small>Gamal kotb</small></div>
+   <div class="role"><strong>مدير ثانٍ</strong><small>لم يتم التعيين</small></div>
+   <div class="role"><strong>نائب</strong><small>لم يتم التعيين</small></div>
+   <div class="role"><strong>أمين صندوق</strong><small>لم يتم التعيين</small></div>
   </div>
  </div>
 </section>
 
 <!-- الشقق -->
 <section id="apartments" class="section">
- <h2>الوحدات والشقق</h2>
- <input id="unitSearch" placeholder="ابحث برقم الشقة أو اسم المالك" oninput="renderUnits()">
+ <h2>الشقق والوحدات</h2>
+ <input id="unitSearch" placeholder="بحث برقم الشقة أو اسم المالك">
  <div id="unitList"></div>
 </section>
 
@@ -172,8 +300,8 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
    <label>الوحدة</label>
    <select id="payUnit" required></select>
    <div class="form-grid">
-    <div><label>الشهر</label><input type="month" id="payMonth" required></div>
-    <div><label>المبلغ بالجنيه</label><input type="number" id="payAmount" min="0" step="1" required></div>
+    <div><label>شهر التحصيل</label><input type="month" id="payMonth" required></div>
+    <div><label>المبلغ بالجنيه</label><input type="number" id="payAmount" min="1" required></div>
     <div><label>تاريخ الدفع</label><input type="date" id="payDate" required></div>
    </div>
    <label>ملاحظات</label>
@@ -200,7 +328,7 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
    <label>بيان المصروف</label>
    <input id="expenseName" required placeholder="مثال: صيانة المصعد">
    <div class="form-grid">
-    <div><label>المبلغ</label><input type="number" id="expenseAmount" min="0" required></div>
+    <div><label>المبلغ</label><input type="number" id="expenseAmount" min="1" required></div>
     <div><label>التاريخ</label><input type="date" id="expenseDate" required></div>
    </div>
    <label>ملاحظات</label>
@@ -211,8 +339,10 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
  <div class="card">
   <h3>سجل المصروفات</h3>
   <div class="table-wrap">
-   <table><thead><tr><th>البيان</th><th>المبلغ</th><th>التاريخ</th><th>إجراء</th></tr></thead>
-   <tbody id="expenseRows"></tbody></table>
+   <table>
+    <thead><tr><th>البيان</th><th>المبلغ</th><th>التاريخ</th><th>إجراء</th></tr></thead>
+    <tbody id="expenseRows"></tbody>
+   </table>
   </div>
  </div>
 </section>
@@ -221,7 +351,8 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
 <section id="reports" class="section">
  <h2>التقارير وكشوف الحساب</h2>
  <div class="card">
-  <label>اختر الشهر</label>
+  <h3>التقرير الشهري</h3>
+  <label>الشهر</label>
   <input type="month" id="reportMonth">
   <button class="primary" onclick="renderReport()">عرض التقرير</button>
   <div id="reportResult"></div>
@@ -237,18 +368,21 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
 <!-- الخدمات -->
 <section id="services" class="section">
  <h2>خدمات السكان</h2>
+
  <div class="card">
   <h3>الصيانة</h3>
-  <textarea id="maintenanceText" placeholder="تسجيل عطل المصعد أو المياه أو الكهرباء..."></textarea>
-  <button class="primary" onclick="saveService('maintenance')">حفظ بلاغ الصيانة</button>
+  <textarea id="maintenanceText" placeholder="بلاغ مصعد، مياه، كهرباء، نظافة..."></textarea>
+  <button class="primary" onclick="saveService('maintenance')">تسجيل بلاغ</button>
   <div id="maintenanceList"></div>
  </div>
+
  <div class="card">
   <h3>الشكاوى والمقترحات</h3>
   <textarea id="complaintText" placeholder="اكتب الشكوى أو المقترح"></textarea>
-  <button class="primary" onclick="saveService('complaints')">إضافة</button>
+  <button class="primary" onclick="saveService('complaints')">إرسال</button>
   <div id="complaintList"></div>
  </div>
+
  <div class="card">
   <h3>الإعلانات والتصويت</h3>
   <textarea id="announcementText" placeholder="إعلان أو موضوع للتصويت"></textarea>
@@ -259,58 +393,89 @@ footer{text-align:center;padding:20px;color:#8a929d;font-size:12px}
 
 <!-- الإعدادات -->
 <section id="settings" class="section">
- <h2>إعدادات النظام</h2>
+ <h2>إعدادات التطبيق</h2>
+
  <div class="card">
-  <label>اسم التطبيق</label>
+  <h3>اسم الاتحاد</h3>
   <input id="settingTitle" value="اتحاد ملاك جيران السعد">
-  <button class="primary" onclick="saveTitle()">حفظ اسم التطبيق</button>
+  <button class="primary" onclick="saveTitle()">حفظ الاسم</button>
  </div>
+
  <div class="card">
-  <h3>بيانات مدير الاتحاد</h3>
+  <h3>بيانات المدير</h3>
   <p>Gamal kotb</p>
-  <p>صورة المدير: يمكن إضافتها لاحقًا.</p>
-  <p>مدير ثانٍ - نائب - أمين صندوق: أماكن مخصصة لتعيينهم لاحقًا.</p>
+  <p>مكان مخصص لإضافة صورة المدير لاحقًا.</p>
+  <p>مدير ثانٍ - نائب - أمين صندوق: أماكن جاهزة للتعيين.</p>
  </div>
+
  <div class="card">
-  <h3>النسخ الاحتياطي والاستعادة</h3>
-  <p>احتفظ بنسخة من بياناتك بانتظام.</p>
+  <h3>النسخ الاحتياطي</h3>
   <button class="primary" onclick="backup()">تنزيل نسخة احتياطية</button>
   <label>استعادة نسخة محفوظة</label>
   <input type="file" id="restoreFile" accept=".json">
   <button class="primary" onclick="restore()">استعادة البيانات</button>
  </div>
+
  <div class="card">
-  <h3>تنبيه</h3>
-  <p class="notice">البيانات محفوظة على هذا المتصفح فقط. لا تحذف بيانات المتصفح قبل أخذ نسخة احتياطية. لم يتم بعد ربط النظام بقاعدة بيانات مشتركة أو إنشاء دخول آمن للملاك.</p>
+  <div class="notice">
+   البيانات الحالية محفوظة في متصفح هذا الجهاز.
+   يلزم استكمال قاعدة البيانات والمزامنة حتى يستطيع الملاك استخدام حساباتهم من أجهزة أخرى.
+  </div>
  </div>
 </section>
+
 </div>
 
-<footer>جيران السعد © 2026</footer>
+<!-- شريط الأيقونات السفلي -->
+<div class="bottom-nav" id="bottomNav">
+ <button class="active" data-page="dashboard">
+  <span>⌂</span><small>الرئيسية</small>
+ </button>
+ <button data-page="apartments">
+  <span>▦</span><small>الشقق</small>
+ </button>
+ <button data-page="payments">
+  <span>▣</span><small>التحصيل</small>
+ </button>
+ <button data-page="expenses">
+  <span>♧</span><small>المصروفات</small>
+ </button>
+ <button data-page="reports">
+  <span>▤</span><small>التقارير</small>
+ </button>
+ <button data-page="services">
+  <span>⚒</span><small>الخدمات</small>
+ </button>
+ <button data-page="settings">
+  <span>⚙</span><small>الإعدادات</small>
+ </button>
+</div>
+
+<footer>اتحاد ملاك جيران السعد © 2026</footer>
 
 <script>
-const KEY="jeeran_saad_v1";
+const KEY="jeeran_saad_complete_v2";
 
 function makeUnits(){
- let a=[];
- for(let floor=1;floor<=12;floor++){
+ let units=[];
+ for(let f=1;f<=12;f++){
   for(let n=1;n<=4;n++){
-   let id=floor*100+n;
-   let fee=floor<=2?225:250;
+   let id=f*100+n;
    let names={
     101:"الحاج فؤاد",
     104:"Gamal kotb",
     802:"محمد حاموكشا",
     1001:"محمد عبدالستار"
    };
-   a.push({
-    id,name:names[id]||"",
-    fee,
+   units.push({
+    id:id,
+    name:names[id]||"",
+    fee:f<=2?225:250,
     vacant:[502,602,604].includes(id)
    });
   }
  }
- return a;
+ return units;
 }
 
 const defaults={
@@ -323,100 +488,126 @@ const defaults={
  announcements:[]
 };
 
-function loadData(){
+function load(){
  try{
-  let saved=JSON.parse(localStorage.getItem(KEY));
-  if(!saved)return structuredClone(defaults);
-  let data={...defaults,...saved};
-  data.units=makeUnits().map(u=>{
-   let old=(saved.units||[]).find(x=>x.id===u.id);
-   return old?{...u,...old,fee:u.fee}:u;
+  let old=JSON.parse(localStorage.getItem(KEY));
+  if(!old)return JSON.parse(JSON.stringify(defaults));
+  let d={...defaults,...old};
+  d.units=makeUnits().map(u=>{
+   let saved=(old.units||[]).find(x=>x.id===u.id);
+   return saved?{...u,...saved,fee:u.fee}:u;
   });
-  return data;
- }catch(e){return structuredClone(defaults)}
+  return d;
+ }catch(e){
+  return JSON.parse(JSON.stringify(defaults));
+ }
 }
-let data=loadData();
+
+let data=load();
 
 function save(){
  localStorage.setItem(KEY,JSON.stringify(data));
 }
-function money(n){return Number(n||0).toLocaleString("ar-EG")+" ج"}
-function unitName(id){
- if(id==="office")return "مكتب الدور الأرضي";
- return "شقة "+id;
+function money(n){
+ return Number(n||0).toLocaleString("en-US")+" ج";
 }
-function currentMonth(){
+function monthNow(){
  return new Date().toISOString().slice(0,7);
 }
-function monthPaid(id,month){
+function unitName(id){
+ return String(id)==="office"?"مكتب الدور الأرضي":"شقة "+id;
+}
+function paidAmount(id,m){
  return data.payments
-  .filter(p=>String(p.unit)===String(id)&&p.month===month)
+  .filter(p=>String(p.unit)===String(id)&&p.month===m)
   .reduce((s,p)=>s+Number(p.amount),0);
 }
-function isPaid(id,month){
+function isPaid(id,m){
  let u=data.units.find(x=>x.id===Number(id));
- if(!u)return false;
- return monthPaid(id,month)>=u.fee;
+ return u && paidAmount(id,m)>=u.fee;
 }
-function totalIncome(month){
- return data.payments.filter(p=>p.month===month)
+function incomeMonth(m){
+ return data.payments.filter(p=>p.month===m)
  .reduce((s,p)=>s+Number(p.amount),0);
 }
-function totalExpenses(month){
- return data.expenses.filter(e=>e.date.startsWith(month))
- .reduce((s,e)=>s+Number(e.amount),0);
+function expenseMonth(m){
+ return data.expenses.filter(p=>p.date.startsWith(m))
+ .reduce((s,p)=>s+Number(p.amount),0);
 }
+
+function showPage(id){
+ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll("#bottomNav button").forEach(b=>{
+  b.classList.toggle("active",b.dataset.page===id);
+ });
+ window.scrollTo(0,0);
+ if(id==="apartments")renderUnits();
+}
+document.getElementById("bottomNav").addEventListener("click",e=>{
+ let b=e.target.closest("button[data-page]");
+ if(b)showPage(b.dataset.page);
+});
+
 function renderDashboard(){
- let m=currentMonth();
- let income=totalIncome(m),expense=totalExpenses(m);
- document.getElementById("income").textContent=money(income);
- document.getElementById("expenseTotal").textContent=money(expense);
- document.getElementById("net").textContent=money(income-expense);
+ let m=monthNow();
+ let inc=incomeMonth(m);
+ let exp=expenseMonth(m);
+ document.getElementById("income").textContent=money(inc);
+ document.getElementById("expenseTotal").textContent=money(exp);
+ document.getElementById("net").textContent=money(inc-exp);
+
  let active=data.units.filter(u=>!u.vacant);
  let paid=active.filter(u=>isPaid(u.id,m)).length;
- document.getElementById("paidCount").textContent=paid+" من "+active.length;
+ document.getElementById("paidCount").textContent=paid+" / "+active.length;
  document.getElementById("unpaidCount").textContent=active.length-paid;
+
+ let rows=data.payments.slice().reverse().slice(0,5);
  document.getElementById("latestPayments").innerHTML=
-  data.payments.slice().reverse().slice(0,5).map(p=>
-  `<tr><td>${unitName(p.unit)}</td><td>${p.month}</td>
-  <td>${money(p.amount)}</td><td>${p.date}</td></tr>`).join("")
-  ||'<tr><td colspan="4">لا توجد تحصيلات مسجلة</td></tr>';
+ rows.map(p=>`<tr>
+ <td>${unitName(p.unit)}</td>
+ <td>${p.month}</td><td>${money(p.amount)}</td><td>${p.date}</td>
+ </tr>`).join("")||
+ '<tr><td colspan="4" class="empty">لا توجد تحصيلات</td></tr>';
 }
 
 function renderUnits(){
- let q=(document.getElementById("unitSearch").value||"").trim().toLowerCase();
- let m=currentMonth();
+ let q=document.getElementById("unitSearch").value.trim().toLowerCase();
+ let m=monthNow();
  let html=`
  <div class="floor">
- <h3>المكتب الأرضي</h3>
- <div class="units">
-  <div class="unit office">
-   <strong>مكتب الدور الأرضي</strong>
-   <small>محمد الجلوي</small>
-   <small>الاشتراك: 100 ج</small>
-   <button class="primary" onclick="quickPay('office')">تسجيل تحصيل</button>
+  <h3>المكتب الأرضي</h3>
+  <div class="units">
+   <div class="unit office">
+    <strong>مكتب الدور الأرضي</strong>
+    <small>محمد الجلوي</small>
+    <small>الاشتراك 100 ج</small>
+    <button class="primary" onclick="quickPay('office')">تسجيل تحصيل</button>
+   </div>
   </div>
- </div>
  </div>`;
+
  for(let f=1;f<=12;f++){
-  let units=data.units.filter(u=>Math.floor(u.id/100)===f);
-  let filtered=units.filter(u=>
-   String(u.id).includes(q)||(u.name||"").toLowerCase().includes(q));
-  if(!filtered.length)continue;
+  let list=data.units.filter(u=>Math.floor(u.id/100)===f);
+  list=list.filter(u=>
+   String(u.id).includes(q)||
+   (u.name||"").toLowerCase().includes(q)
+  );
+  if(!list.length)continue;
   html+=`<div class="floor"><h3>الدور ${f}</h3><div class="units">`;
-  filtered.forEach(u=>{
+  list.forEach(u=>{
    let status=u.vacant?
-    '<span class="status vacant">خالية</span>':
+    '<span class="vacant">خالية</span>':
     isPaid(u.id,m)?
-    '<span class="status paid">● مدفوع</span>':
-    '<span class="status unpaid">● غير مدفوع</span>';
+    '<span class="paid">● مدفوع</span>':
+    '<span class="unpaid">● غير مدفوع</span>';
    html+=`<div class="unit">
     <strong>${u.id}</strong>
-    <small>${u.name||"اسم المالك غير مسجل"}</small>
+    <small>${escapeHTML(u.name||"اسم المالك غير مسجل")}</small>
     <small>${u.vacant?"بدون اشتراك":money(u.fee)}</small>
     ${status}
-    <button class="primary" onclick="quickPay(${u.id})">تسجيل التحصيل</button>
-    <button class="small gold" onclick="editUnit(${u.id})">بيانات الوحدة</button>
+    <button class="primary" onclick="quickPay(${u.id})">تحصيل</button>
+    <button class="gold-btn" onclick="editUnit(${u.id})">بيانات</button>
    </div>`;
   });
   html+="</div></div>";
@@ -424,23 +615,28 @@ function renderUnits(){
  document.getElementById("unitList").innerHTML=html;
 }
 
-function fillUnitSelects(){
+document.getElementById("unitSearch").addEventListener("input",renderUnits);
+
+function fillSelects(){
  let opts=data.units.map(u=>
-  `<option value="${u.id}">${u.id} - ${u.name||"بدون اسم"}</option>`).join("");
+ `<option value="${u.id}">${u.id} - ${escapeHTML(u.name||"بدون اسم")}</option>`
+ ).join("");
  document.getElementById("payUnit").innerHTML=
-  '<option value="office">مكتب الدور الأرضي</option>'+opts;
+ '<option value="office">مكتب الدور الأرضي</option>'+opts;
  document.getElementById("statementUnit").innerHTML=
-  '<option value="office">مكتب الدور الأرضي</option>'+opts;
+ '<option value="office">مكتب الدور الأرضي</option>'+opts;
 }
+
 function quickPay(id){
  showPage("payments");
  document.getElementById("payUnit").value=String(id);
  let u=data.units.find(x=>x.id===Number(id));
  document.getElementById("payAmount").value=
-  id==="office"?100:(u?u.fee:"");
- document.getElementById("payMonth").value=currentMonth();
+ id==="office"?100:(u?u.fee:"");
+ document.getElementById("payMonth").value=monthNow();
  document.getElementById("payDate").value=new Date().toISOString().slice(0,10);
 }
+
 function editUnit(id){
  let u=data.units.find(x=>x.id===id);
  let name=prompt("اسم المالك",u.name||"");
@@ -450,6 +646,7 @@ function editUnit(id){
  u.vacant=vacant;
  save();refresh();
 }
+
 document.getElementById("paymentForm").addEventListener("submit",e=>{
  e.preventDefault();
  let unit=document.getElementById("payUnit").value;
@@ -458,27 +655,31 @@ document.getElementById("paymentForm").addEventListener("submit",e=>{
  let date=document.getElementById("payDate").value;
  if(!month||!date||amount<=0)return alert("راجع بيانات التحصيل");
  let u=data.units.find(x=>x.id===Number(unit));
- if(u&&u.vacant)return alert("هذه الوحدة خالية. غيّر حالتها أولًا.");
+ if(u&&u.vacant)return alert("الوحدة خالية. غيّر حالتها أولًا.");
  data.payments.push({
   id:Date.now(),unit,amount,month,date,
   note:document.getElementById("payNote").value
  });
  save();e.target.reset();refresh();
- alert("تم تسجيل التحصيل");
+ document.getElementById("payMonth").value=monthNow();
+ alert("تم حفظ التحصيل");
 });
+
 function renderPayments(){
  document.getElementById("paymentRows").innerHTML=
- data.payments.slice().reverse().map(p=>
- `<tr><td>${unitName(p.unit)}</td><td>${p.month}</td>
+ data.payments.slice().reverse().map(p=>`
+ <tr><td>${unitName(p.unit)}</td><td>${p.month}</td>
  <td>${money(p.amount)}</td><td>${p.date}</td>
- <td><button class="danger small" onclick="deletePayment(${p.id})">حذف</button></td></tr>`
- ).join("")||'<tr><td colspan="5">لا توجد تحصيلات</td></tr>';
+ <td><button class="danger small" onclick="deletePayment(${p.id})">حذف</button></td></tr>
+ `).join("")||
+ '<tr><td colspan="5" class="empty">لا توجد تحصيلات</td></tr>';
 }
 function deletePayment(id){
- if(!confirm("هل تريد حذف هذا التحصيل؟"))return;
+ if(!confirm("حذف التحصيل؟"))return;
  data.payments=data.payments.filter(p=>p.id!==id);
  save();refresh();
 }
+
 document.getElementById("expenseForm").addEventListener("submit",e=>{
  e.preventDefault();
  let amount=Number(document.getElementById("expenseAmount").value);
@@ -494,48 +695,59 @@ document.getElementById("expenseForm").addEventListener("submit",e=>{
 });
 function renderExpenses(){
  document.getElementById("expenseRows").innerHTML=
- data.expenses.slice().reverse().map(x=>
- `<tr><td>${escapeHTML(x.name)}</td><td>${money(x.amount)}</td>
- <td>${x.date}</td><td><button class="danger small" onclick="deleteExpense(${x.id})">حذف</button></td></tr>`
- ).join("")||'<tr><td colspan="4">لا توجد مصروفات</td></tr>';
+ data.expenses.slice().reverse().map(x=>`
+ <tr><td>${escapeHTML(x.name)}</td><td>${money(x.amount)}</td>
+ <td>${x.date}</td>
+ <td><button class="danger small" onclick="deleteExpense(${x.id})">حذف</button></td></tr>
+ `).join("")||
+ '<tr><td colspan="4" class="empty">لا توجد مصروفات</td></tr>';
 }
 function deleteExpense(id){
  if(!confirm("حذف المصروف؟"))return;
  data.expenses=data.expenses.filter(x=>x.id!==id);
  save();refresh();
 }
+
 function renderReport(){
  let m=document.getElementById("reportMonth").value;
  if(!m)return alert("اختر الشهر");
- let inc=totalIncome(m),exp=totalExpenses(m);
+ let inc=incomeMonth(m),exp=expenseMonth(m);
+ let previous=data.payments.filter(p=>p.month<m)
+ .reduce((s,p)=>s+Number(p.amount),0);
  document.getElementById("reportResult").innerHTML=`
- <h3>تقرير ${m}</h3>
+ <div class="notice">
  <p>إيراد الشهر: ${money(inc)}</p>
  <p>مصروفات الشهر: ${money(exp)}</p>
  <p>صافي الشهر: ${money(inc-exp)}</p>
- <p>إجمالي التحصيلات السابقة: ${money(data.payments.filter(p=>p.month<m).reduce((s,p)=>s+Number(p.amount),0))}</p>`;
+ <p>إجمالي التحصيلات في الشهور السابقة: ${money(previous)}</p>
+ </div>`;
 }
 function renderStatement(){
  let id=document.getElementById("statementUnit").value;
  let rows=data.payments.filter(p=>String(p.unit)===String(id));
- document.getElementById("statementResult").innerHTML=
- `<h3>${unitName(id)}</h3><div class="table-wrap"><table>
+ let total=rows.reduce((s,p)=>s+Number(p.amount),0);
+ document.getElementById("statementResult").innerHTML=`
+ <h3>${unitName(id)}</h3>
+ <div class="table-wrap"><table>
  <tr><th>الشهر</th><th>المبلغ</th><th>التاريخ</th></tr>
  ${rows.map(p=>`<tr><td>${p.month}</td><td>${money(p.amount)}</td><td>${p.date}</td></tr>`).join("")}
- </table></div><p>إجمالي المدفوع: ${money(rows.reduce((s,p)=>s+Number(p.amount),0))}</p>`;
+ </table></div>
+ <p>إجمالي المدفوع: ${money(total)}</p>`;
 }
+
 function saveTitle(){
  let t=document.getElementById("settingTitle").value.trim();
  if(!t)return alert("اكتب اسم التطبيق");
  data.title=t;save();refresh();
  alert("تم حفظ الاسم");
 }
+
 function backup(){
  let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  let url=URL.createObjectURL(blob);
  let a=document.createElement("a");
- a.href=url;a.download="jeeran-saad-backup.json";a.click();
- URL.revokeObjectURL(url);
+ a.href=url;a.download="jeeran-saad-backup.json";
+ a.click();URL.revokeObjectURL(url);
 }
 function restore(){
  let file=document.getElementById("restoreFile").files[0];
@@ -544,24 +756,32 @@ function restore(){
  reader.onload=()=>{
   try{
    let obj=JSON.parse(reader.result);
-   if(!obj.units||!obj.payments||!obj.expenses)throw Error();
-   if(!confirm("سيتم استبدال البيانات الحالية. هل توافق؟"))return;
+   if(!Array.isArray(obj.units)||!Array.isArray(obj.payments)||!Array.isArray(obj.expenses))throw Error();
+   if(!confirm("استبدال البيانات الحالية بالنسخة؟"))return;
    data={...defaults,...obj};
+   data.units=makeUnits().map(u=>{
+    let old=data.units.find(x=>x.id===u.id);
+    return old?{...u,...old,fee:u.fee}:u;
+   });
    save();refresh();alert("تمت الاستعادة");
-  }catch(e){alert("ملف النسخة غير صالح")}
+  }catch(e){alert("الملف غير صالح")}
  };
  reader.readAsText(file);
 }
+
 function saveService(type){
- let map={
-  maintenance:["maintenanceText","maintenanceList","maintenance"],
-  complaints:["complaintText","complaintList","complaints"],
-  announcements:["announcementText","announcementList","announcements"]
+ const map={
+  maintenance:["maintenanceText","maintenanceList"],
+  complaints:["complaintText","complaintList"],
+  announcements:["announcementText","announcementList"]
  };
- let [input,list,key]=map[type];
+ let [input]=map[type];
  let value=document.getElementById(input).value.trim();
  if(!value)return alert("اكتب التفاصيل أولًا");
- data[key].push({id:Date.now(),text:value,date:new Date().toLocaleDateString("ar-EG")});
+ data[type].push({
+  id:Date.now(),text:value,
+  date:new Date().toLocaleDateString("ar-EG")
+ });
  document.getElementById(input).value="";
  save();renderServices();
 }
@@ -571,39 +791,34 @@ function renderServices(){
   ["complaints","complaintList"],
   ["announcements","announcementList"]
  ].forEach(([key,id])=>{
-  document.getElementById(id).innerHTML=data[key].map(x=>
-   `<p class="notice">${escapeHTML(x.text)} <small>${x.date}</small></p>`
-  ).join("");
+  document.getElementById(id).innerHTML=
+  data[key].slice().reverse().map(x=>
+   `<p class="notice">${escapeHTML(x.text)}<br><small>${x.date}</small></p>`
+  ).join("")||
+  '<p class="empty">لا توجد بيانات مسجلة</p>';
  });
 }
+
 function escapeHTML(s){
  return String(s||"").replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
  }[c]));
 }
-function showPage(id){
- document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll("nav button").forEach(b=>
- b.classList.toggle("active",b.dataset.page===id));
- if(id==="apartments")renderUnits();
-}
-document.getElementById("nav").addEventListener("click",e=>{
- let b=e.target.closest("button[data-page]");
- if(b)showPage(b.dataset.page);
-});
+
 function refresh(){
  document.getElementById("appTitle").textContent=data.title;
  document.getElementById("settingTitle").value=data.title;
- fillUnitSelects();
+ fillSelects();
  renderDashboard();
  renderUnits();
  renderPayments();
  renderExpenses();
  renderServices();
 }
-document.getElementById("payMonth").value=currentMonth();
-document.getElementById("reportMonth").value=currentMonth();
+
+document.getElementById("payMonth").value=monthNow();
+document.getElementById("reportMonth").value=monthNow();
 refresh();
 </script>
 </body>
